@@ -1,7 +1,7 @@
 variable "deflow_resource_group_name" {
 type = string
 description = "This is for resource group name"
-default = "devflow-project-group6-rg"
+default = "devflow-project-groupsix-rg"
 }
 
 variable "devflow_location" {
