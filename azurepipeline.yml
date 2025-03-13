@@ -53,8 +53,8 @@ stages:
           export ARM_CLIENT_SECRET=$(ARM_CLIENT_SECRET)
           export ARM_TENANT_ID=$(ARM_TENANT_ID)
           export ARM_SUBSCRIPTION_ID=$(ARM_SUBSCRIPTION_ID)
-          terraform plan -var subscription_id=$(ARM_SUBSCRIPTION_ID)
-        #  terraform plan -destroy -var subscription_id=$(ARM_SUBSCRIPTION_ID)
+          # terraform plan -var subscription_id=$(ARM_SUBSCRIPTION_ID)
+          terraform plan -destroy -var subscription_id=$(ARM_SUBSCRIPTION_ID)
     - task: AzureCLI@2
       displayName: "Terraform Apply"
       inputs:
@@ -66,6 +66,6 @@ stages:
           export ARM_CLIENT_SECRET=$(ARM_CLIENT_SECRET)
           export ARM_TENANT_ID=$(ARM_TENANT_ID)
           export ARM_SUBSCRIPTION_ID=$(ARM_SUBSCRIPTION_ID)
-          terraform apply -var subscription_id=$(ARM_SUBSCRIPTION_ID) -auto-approve
-         # terraform destroy -var subscription_id=$(ARM_SUBSCRIPTION_ID) -auto-approve
+          # terraform apply -var subscription_id=$(ARM_SUBSCRIPTION_ID) -auto-approve
+          terraform destroy -var subscription_id=$(ARM_SUBSCRIPTION_ID) -auto-approve
         
