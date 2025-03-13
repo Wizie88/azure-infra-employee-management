@@ -37,7 +37,7 @@ stages:
         inlineScript: |
           terraform init \
           -backend-config="storage_account_name=progetsa" \
-          -backend-config="container_name=terraform-state" \
+          -backend-config="container_name=project-container" \
           -backend-config="key=project.tfstate" \
           -backend-config="resource_group_name=backend-rg" \
           -backend-config="subscription_id=$(ARM_SUBSCRIPTION_ID)" \
