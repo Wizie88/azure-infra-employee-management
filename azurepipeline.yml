@@ -34,13 +34,13 @@ stages:
         scriptLocation: 'inlineScript'
         inlineScript: |
           terraform init \
-          -backend-config="storage_account_name=progetsa" \
-          -backend-config="container_name=project-container" \
-          -backend-config="key=project.tfstate" \
-          -backend-config="resource_group_name=backend-rg" \
-          -backend-config="subscription_id=$(ARM_SUBSCRIPTION_ID)" \
-          -backend-config="client_id=$(ARM_CLIENT_ID)" \
-          -backend-config="client_secret=$(ARM_CLIENT_SECRET)" \
+          -backend-config="storage_account_name=progetsa"\
+          -backend-config="container_name=project-container"\
+          -backend-config="key=project.tfstate"\
+          -backend-config="resource_group_name=backend-rg"\
+          -backend-config="subscription_id=$(ARM_SUBSCRIPTION_ID)"\
+          -backend-config="client_id=$(ARM_CLIENT_ID)"\
+          -backend-config="client_secret=$(ARM_CLIENT_SECRET)"\
           -backend-config="tenant_id=$(ARM_TENANT_ID)"  -var subscription_id=$(ARM_SUBSCRIPTION_ID)
     - task: AzureCLI@2
       displayName: "Terraform Plan"
