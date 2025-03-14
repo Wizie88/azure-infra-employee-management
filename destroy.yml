@@ -1,5 +1,7 @@
-trigger: none
-
+trigger:
+  branches:
+    include:
+    - to-destroy
 variables:
   - group: devflow-main-infra-variable-group  
 
