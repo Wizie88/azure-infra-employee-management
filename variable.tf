@@ -58,7 +58,7 @@ default = "devflow-group6-db"
 variable "devflow_key_vault_name" {
 type = string
 description = "The name of devflow key vault"
-default = "devflowgroup6keyvault"
+default = "devflowgroupsixkeyvault"
 }
 
 variable "devflow_key_vault_enabled_for_disk_encryption" {
