@@ -112,7 +112,7 @@ default = "devflowappserviceplangroup6"
 variable "deflow_app_service_name" {
 type = string
 description = "deflow app name"
-default = "devflowappservicegroup6"
+default = "devflowappservicegroup-six"
 }
 
 variable "deflow_app_service_plan_os_type" {
