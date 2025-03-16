@@ -54,7 +54,7 @@ resource "azurerm_service_plan" "devflow-service-plan" {
 
 # App Service
 resource "azurerm_windows_web_app" "tech-integration-web-app" {
-  depends_on = [ azurerm_resource_group.devflow_resource_group, azurerm_service_plan.devflow-service-plan ]
+  depends_on = [ azurerm_resource_group.devflow_resource_group, azurerm_service_plan.devflow-service-plan, azurerm_key_vault.devflow_key_vault ]
   name                = var.deflow_app_service_name
   location            = azurerm_resource_group.devflow_resource_group.location
   resource_group_name = azurerm_resource_group.devflow_resource_group.name  
@@ -64,7 +64,22 @@ resource "azurerm_windows_web_app" "tech-integration-web-app" {
     always_on = false
   }
 
+  identity{
+    type = "SystemAssigned"
+  }
+
   app_settings = {
     "WEBSITE_RUN_FROM_PACKAGE" = "1"
+    "ASPNETCORE_ENVIRONMENT" = "Production"
+    "KeyVaultUrl": "${azurerm_key_vault.devflow_key_vault.vault_uri}"
   }
+}
+
+resource "azurerm_key_vault_access_policy" "devflow_key_vault_access_policy_app_service" {
+  depends_on = [ azurerm_key_vault.devflow_key_vault, azurerm_windows_web_app.devflow-web-app ]
+  key_vault_id = azurerm_key_vault.devflow_key_vault.id
+  tenant_id    = data.azurerm_client_config.devflow_client_config.tenant_id
+  object_id    = azurerm_windows_web_app.tech-integration-web-app.identity[0].principal_id
+  key_permissions = var.devflow_key_vault_key_permissions
+  secret_permissions = var.devflow_key_vault_secret_permissions
 }

@@ -94,7 +94,7 @@ default = [ "Get", "List" ]
 variable "devflow_key_vault_secret_permissions" {
 type = list(string)
 description = "secret permissions"
-default = [ "Get", "List" ]
+default = [ "Get", "List", "Set" ]
 }
 
 variable "subscription_id" {
