@@ -76,7 +76,7 @@ resource "azurerm_windows_web_app" "tech-integration-web-app" {
 }
 
 resource "azurerm_key_vault_access_policy" "devflow_key_vault_access_policy_app_service" {
-  depends_on = [ azurerm_key_vault.devflow_key_vault, azurerm_windows_web_app.devflow-web-app ]
+  depends_on = [ azurerm_key_vault.devflow_key_vault, azurerm_windows_web_app.tech-integration-web-app ]
   key_vault_id = azurerm_key_vault.devflow_key_vault.id
   tenant_id    = data.azurerm_client_config.devflow_client_config.tenant_id
   object_id    = azurerm_windows_web_app.tech-integration-web-app.identity[0].principal_id
