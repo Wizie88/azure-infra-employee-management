@@ -75,6 +75,14 @@ resource "azurerm_windows_web_app" "tech-integration-web-app" {
   }
 }
 
+resource "azurerm_mssql_firewall_rule" "allow_azure_services" {
+  depends_on = [ azurerm_mssql_server.devflow_mssql_server,  azurerm_mssql_database.devflow_mssql_server_database]
+  name             = var.devflow_mssql_server_firewall_rule_name
+  server_id        = azurerm_mssql_server.devflow_mssql_server.id
+  start_ip_address = var.devflow_mssql_server_firewall_start_ip_address
+  end_ip_address   = var.devflow_mssql_server_firewall_end_ip_address
+}
+
 resource "azurerm_key_vault_access_policy" "devflow_key_vault_access_policy_app_service" {
   depends_on = [ azurerm_key_vault.devflow_key_vault, azurerm_windows_web_app.tech-integration-web-app ]
   key_vault_id = azurerm_key_vault.devflow_key_vault.id

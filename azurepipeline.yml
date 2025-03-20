@@ -16,7 +16,7 @@ stages:
     - task: TerraformInstaller@1
       displayName: "Install Terraform"
       inputs:
-        terraformVersion: '1.5.7'  # Specify Terraform version
+        terraformVersion: 'latest'  # Specify Terraform version
     # Step 2: Login to azure for proper access to your azure account
     - task: AzureCLI@2
       displayName: "Azure CLI Login"
